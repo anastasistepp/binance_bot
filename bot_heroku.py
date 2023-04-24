@@ -7,7 +7,14 @@ import pandas as pd
 import numpy as np
 from binance.client import Client
 import talib
-import time
+import subprocess
+
+try:
+    import aiogram
+except ImportError:
+    subprocess.check_call(["pip", "install", "aiogram"])
+    import aiogram
+
 
 
 # Инициализация бота и диспетчера
