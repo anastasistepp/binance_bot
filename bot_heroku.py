@@ -138,10 +138,11 @@ async def update_candles():
             # Проверка и вывод сигналов
             if signals:
                 print(f"Сигналы для {symbols[i]} на {df[i]['Open time'].iloc[-1]}:")
-                await send_signal(text=f"Сигналы для {symbols[i]} на {df[i]['Open time'].iloc[-1]}:")
+                s = f"Сигналы для {symbols[i]} на {df[i]['Open time'].iloc[-1]}:"
                 for signal in signals:
                     print(signal)
-                    await send_signal(text=signal)
+                    s += '\n' + signal
+                await send_signal(text=s)
             else:
                 print(f"Сигналов для {symbols[i]} на {df[i]['Open time'].iloc[-1]} не обнаружено")
                 # await send_signal(text=f"Сигналов для {symbols[i]} на {df[i]['Open time'].iloc[-1]} не обнаружено")
