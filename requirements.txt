@@ -1,4 +1,4 @@
-aiogram==2.25.1
+aiogram
 asyncio==3.4.3
 binance==0.3
 numpy==1.24.2
