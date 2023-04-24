@@ -1,6 +1,6 @@
 from aiogram import Bot, Dispatcher, types
 import asyncio
-from config import BOT_TOKEN, api_key, api_secret
+#from config import BOT_TOKEN, api_key, api_secret
 import os
 import csv
 import pandas as pd

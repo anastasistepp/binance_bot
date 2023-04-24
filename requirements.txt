@@ -1,0 +1,8 @@
+aiogram
+asyncio
+os
+csv
+pandas
+numpy
+binance
+talib
