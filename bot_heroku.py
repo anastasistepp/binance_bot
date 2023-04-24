@@ -1,5 +1,5 @@
-from aiogram import Bot, Dispatcher, types
 import asyncio
+import aiogram
 #from config import BOT_TOKEN, api_key, api_secret
 import os
 import csv
@@ -7,19 +7,12 @@ import pandas as pd
 import numpy as np
 from binance.client import Client
 import talib
-import subprocess
-
-try:
-    import aiogram
-except ImportError:
-    subprocess.check_call(["pip", "install", "aiogram"])
-    import aiogram
 
 
 
 # Инициализация бота и диспетчера
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher(bot)
+bot = aiogram.Bot(token=BOT_TOKEN)
+dp = aiogram.Dispatcher(bot)
 chat_id = ''
 
 symbols = ['BTCUSDT', 'ETHUSDT']
@@ -161,14 +154,14 @@ async def update_candles():
 
 
 # Обработчик команды /start
-async def cmd_start(message: types.Message):
+async def cmd_start(message: aiogram.types.Message):
     global chat_id
     chat_id = message.chat.id
     await update_candles()
     await message.reply("Привет! Я твой асинхронный Telegram-бот.")
 
 # Обработчик эхо-сообщений
-async def echo_message(message: types.Message):
+async def echo_message(message: aiogram.types.Message):
     text = message.text
     await message.reply(f"Вы сказали: {text}")
 
@@ -179,12 +172,12 @@ async def send_signal(text):
 
 # Обработчик команд
 @dp.message_handler(commands=["start"])
-async def handle_cmd(message: types.Message):
+async def handle_cmd(message: aiogram.types.Message):
     await cmd_start(message)
 
 # Обработчик текстовых сообщений
-@dp.message_handler(content_types=types.ContentTypes.TEXT)
-async def handle_text(message: types.Message):
+@dp.message_handler(content_types=aiogram.types.ContentTypes.TEXT)
+async def handle_text(message: aiogram.types.Message):
     await echo_message(message)
 
 if __name__ == "__main__":
